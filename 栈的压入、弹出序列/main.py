@@ -8,6 +8,7 @@ class Solution:
             stack.append(i)
             print("i:", i)
             print("stack", stack)
+            print("popV", popV)
             while len(stack) and stack[-1] == popV[0]:
                 x = stack.pop()
                 y = popV.pop(0)
@@ -18,7 +19,7 @@ class Solution:
             return True
 
 pushV = [1, 2, 3, 4, 5]
-popV = [4, 5, 3, 2, 1]
+popV = [4, 3, 5, 2, 1]
 popVF = [4, 5, 2, 1, 3]
 S = Solution()
-print(S.IsPopOrder(pushV, popVF))
+print(S.IsPopOrder(pushV, popV))
