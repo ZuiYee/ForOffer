@@ -18,7 +18,7 @@ class Solution:
             return pRootOfTree
 
         left = self.Convert(pRootOfTree.left)
-        print(left.val)
+        # print(left.val)
         if left:
             self.leave.right = pRootOfTree
             pRootOfTree.left = self.leave
@@ -26,13 +26,31 @@ class Solution:
         self.leave = pRootOfTree
 
         right = self.Convert(pRootOfTree.right)
-        print(right.val)
+        # print(right.val)
         if right:
             right.left =pRootOfTree
             pRootOfTree.right = right
-        print("leave", self.leave.val)
+        # print("leave", self.leave.val)
         return left if left else pRootOfTree
 
+    def Convert1(self, root):
+        if not root:
+            return None
+        if not root.left and root.right:
+            self.leave = root
+            return root
+
+        left = self.Convert(root.left)
+        if left:
+            self.leave.right = root
+            root.left = self.leave
+        self.leave = root
+
+        right = self.Convert(root.right)
+        if right:
+            right.left = root
+            root.right = right
+        return left if left else root
 
 
 pNode1 = TreeNode(8)
@@ -52,4 +70,9 @@ pNode3.right = pNode7
 
 S = Solution()
 newList = S.Convert(pNode1)
-print(newList.val)
+while newList:
+    if newList.left:
+        print('left', newList.left.val)
+    print(newList.val)
+
+    newList = newList.right
